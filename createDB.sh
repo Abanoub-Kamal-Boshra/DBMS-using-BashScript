@@ -35,7 +35,7 @@ echo -e "*=========${CYAN}Do You Need To Create More DataBases${NC}==========*"
            1) createdb
             ;;   
             
-           2) ./main.sh
+           2) source ./main.sh
             ;;
        
     esac

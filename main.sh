@@ -12,7 +12,7 @@ echo -e "${BLUE}\t***********************************************"
 echo -e "\t****************\t${RED}DBMS${BLUE}\t***************"
 echo -e "\t***********************************************${NOR}"
 echo " "
-select choice in "Create Database" "List Databases"  "Connect To Databases" "Drop Database"
+select choice in "Create Database" "List Databases"  "Connect To Databases" "Drop Database" "Exit"
 do
 case $REPLY in
 	1) ./createDB.sh
@@ -21,9 +21,12 @@ case $REPLY in
 		;;
 	3) ./connect.sh
 		;;
-	4) #drop_db
+	4) ./dropDB.sh
+		;;
+	5) exit
 		;;
 	*) echo $REPLY "is not one of the choices."
+		exit
 		;;
 esac
 done

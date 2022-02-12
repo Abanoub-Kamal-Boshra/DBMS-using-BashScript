@@ -1,16 +1,69 @@
 #!/bin/bash
 PS3="${1}>>"
+
+pk_flag=0
+primaryKey=""
+colNum=1
+
+
+createColumn()
+{
+	
+	read -p "Enter column name" col
+	
+	if [ ! -z col ] #&& [ -z head -n1 | grep "*$col*" ]
+	then
+		if [ "$pk_flag" = "0" ]
+		then
+			select choice in "Is Primary Key" "No"
+			do
+			case $REPLY in
+				1) primaryKey="$col:$colNum"
+				   pk_flag="1"
+				   break
+					;;
+				2) break
+				   	;;
+			esac
+			done
+		fi
+		echo "Enter column data"
+		select choice in "Number" "String"
+		do
+			case $REPLY in
+				1) record="$record$col.number:"
+				   break
+					;;
+				2) record="$record$col.text:"
+				   break
+				   	;;
+				*) echo "Enter a valid type"
+					;;
+			esac
+		done
+	else
+		echo "Enter a valid column name!"
+	fi
+	
+	let colNum=$colNum+1
+}
+
+
+
 read -p "Please enter table name" tname
-if [ ! -z tname ] && [ ! -d ./Databases/${1}/tname ]
+if [ ! -z tname ] && [ -f ./Databases/${1}/tname ]
 then
+	touch ./Databases/${1}/tname
+
 	select choice in "New column" "Finish table"  
 	do
 	case $REPLY in
-		1) 
+		1) 	createColumn
 			echo "ok"
- #createTable.sh
 			;;
 		2) 	#enter PK
+			record="$primaryKey\n$record"
+			$record >> ./Databases/${1}/tname
 			./DBoperations.sh ${1}
 			;;
 		*) echo $REPLY "is not one of the choices."
@@ -19,8 +72,15 @@ then
 	done
 fi
 
-createColumn()
-{
-	read -p "Enter number of columns : " cnum
-	
-}
+
+
+
+
+
+
+
+
+
+
+
+
