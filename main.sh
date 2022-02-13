@@ -15,13 +15,13 @@ echo " "
 select choice in "Create Database" "List Databases"  "Connect To Databases" "Drop Database" "Exit"
 do
 case $REPLY in
-	1) ./createDB.sh
+	1) source ./createDB.sh
 		;;
-	2) ./list.sh
+	2) source ./list.sh
 		;;
-	3) ./connect.sh
+	3) source ./connect.sh
 		;;
-	4) ./dropDB.sh
+	4) source ./dropDatabase.sh
 		;;
 	5) exit
 		;;

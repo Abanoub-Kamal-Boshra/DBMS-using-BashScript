@@ -9,7 +9,7 @@ colNum=1
 createColumn()
 {
 	
-	read -p "Enter column name" col
+	read -p "Enter column name : " col
 	
 	if [ ! -z col ] #&& [ -z head -n1 | grep "*$col*" ]
 	then
@@ -50,26 +50,36 @@ createColumn()
 
 
 
-read -p "Please enter table name" tname
-if [ ! -z tname ] && [ -f ./Databases/${1}/tname ]
+read -p "Please enter table name : " tname
+if [ ! -z $tname ] && [ ! -f ./Databases/${1}/$tname ]
 then
-	touch ./Databases/${1}/tname
+	touch ./Databases/${1}/$tname
 
-	select choice in "New column" "Finish table"  
+	select choice in "New column" "Finish table" "Unsave table"
 	do
 	case $REPLY in
 		1) 	createColumn
 			echo "ok"
 			;;
 		2) 	#enter PK
-			record="$primaryKey\n$record"
-			$record >> ./Databases/${1}/tname
-			./DBoperations.sh ${1}
+			if [ "$pk_flag" != "0" ]
+			then
+				NL=$'\n'
+				echo -e "$primaryKey:$colNum\n$record" >> ./Databases/${1}/$tname
+				./DBoperations.sh ${1}
+			else
+				echo "You must enter a Primary Key Column"
+			fi
+			;;
+		3) 	rm ./Databases/${1}/$tname
+			source ./DBoperations.sh
 			;;
 		*) echo $REPLY "is not one of the choices."
 			;;
 	esac
 	done
+else
+	echo "Invalid table name or already exists!!"
 fi
 
 
