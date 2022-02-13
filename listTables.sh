@@ -12,9 +12,9 @@ do
 case $REPLY in
 	1) 	source ./insertTable.sh ${1}
 		;;
-	2) 	source ./dropFromTables.sh ${1}
+	2) 	source ./dropFromTable.sh ${1}
 		;;
-	3)	source ./selectTable.sh ${1}
+	3)	source ./selectFromTable.sh ${1}
 		;;
 	4) source ./DBoperations.sh
 		;;

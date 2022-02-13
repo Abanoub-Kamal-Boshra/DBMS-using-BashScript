@@ -10,4 +10,3 @@ else
 	echo -e "\t********$tname has removed successfully!\t********"
 fi
 
-source ./DBoperations.sh

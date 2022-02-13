@@ -55,7 +55,7 @@ do
 
 done
 
-echo  $record >> ./Databases/${1}/$tname
+echo  "$record " >> ./Databases/${1}/$tname
 
 
 fi

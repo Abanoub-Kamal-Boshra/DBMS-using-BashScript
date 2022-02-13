@@ -11,7 +11,7 @@ createColumn()
 	
 	read -p "Enter column name : " col
 	
-	if [ ! -z col ] #&& [ -z head -n1 | grep "*$col*" ]
+	if [ ! -z col ]
 	then
 		if [ "$pk_flag" = "0" ]
 		then
@@ -61,11 +61,11 @@ then
 		1) 	createColumn
 			echo "ok"
 			;;
-		2) 	#enter PK
+		2) 
 			if [ "$pk_flag" != "0" ]
 			then
 				NL=$'\n'
-				echo -e "$primaryKey:$colNum\n$record" >> ./Databases/${1}/$tname
+				echo -e "$primaryKey:$colNum\n$record " >> ./Databases/${1}/$tname
 				./DBoperations.sh ${1}
 			else
 				echo "You must enter a Primary Key Column"
