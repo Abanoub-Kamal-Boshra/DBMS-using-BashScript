@@ -1,9 +1,15 @@
-echo -e "********************************"
-echo -e "=   ${BLUE}DataBases ${NC}   ="
-echo -e "********************************"
+#!/bin/bash
+source ./colors.sh
+echo ""
+echo -e "${BLUE}***********************************************"
+echo -e "****************   ${CYAN}DataBases   ${BLUE}****************"
+echo -e "***********************************************${NOR}"
+    i=0
     for db in `ls $PWD/"Databases"`
     do
-    echo -e "\t$db"
+	i=$((i+1))
+	echo -e "${BLUE}*   ${i}-\t ${NOR}$db"
     done
-echo -e "********************************"
+echo -e "${BLUE}*******************************************************${NOR}"
+echo ""
 source ./main.sh

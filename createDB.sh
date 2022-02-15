@@ -1,32 +1,40 @@
 #!/bin/bash
-PS3="Enter the number of your choise: "
+source ./colors.sh
+PS3="Enter your choise number: "
+
 createdb(){
     if [ ! -d ./Databases/ ]
     then
     mkdir ./Databases
     fi
-    echo -e "=========================================="
-    echo -e "#           ${BLUE}create Database${NC}              #"
-    echo -e "=========================================="
+
+	echo " "
+	echo -e "${BLUE}***********************************************"
+	echo -e "************\t${CYAN}create Database${BLUE}    ************"
+	echo -e "***********************************************${NOR}"
+
 while [[ true ]]
 do
     read -p "Enter database name : " dbName
         if [ "$dbName" == '' ]
         then
-            echo -e "*======${RED}Please Enter Valid Data${NC}======*"
+            echo -e "\t${RED}Please enter a valid data!${NOR}"
         
         elif [ -d ./Databases/$dbName ]
         then
-            echo -e "*======${RED}Database already Exist${NC}======*"
+            echo -e "\t${RED}Database already exist!${NOR}"
         else
             mkdir ./Databases/$dbName
             echo ""
-            echo  -e "\t${GREEN}Database  $dbName succesfully created${NC}"
+            echo  -e "\t${GREEN}Database ${CYAN}$dbName ${GREEN}succesfully created${NOR}"
+	    echo ""
             break
         fi
 done
-}
-echo -e "*=========${CYAN}Do You Need To Create More DataBases${NC}==========*"
+
+
+echo " "
+echo -e "${BLUE}***** ${CYAN}Do You Need To Create More DataBases${BLUE} *****${NOR}"
 
      select type in 'Yes' 'No'
      do 
@@ -35,10 +43,14 @@ echo -e "*=========${CYAN}Do You Need To Create More DataBases${NC}==========*"
            1) createdb
             ;;   
             
-           2) source ./main.sh
+           2) echo -e "${BLUE}*******************************************************${NOR}"
+	      source ./main.sh
             ;;
        
     esac
     done
+}
+
+createdb
 
 

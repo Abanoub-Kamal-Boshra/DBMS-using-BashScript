@@ -1,15 +1,17 @@
 #!/bin/bash
+source ./colors.sh
 PS3="${1}>>"
 
 pk_flag=0
 primaryKey=""
 colNum=1
+record=""
 
 
 createColumn()
 {
 	
-	read -p "Enter column name : " col
+	read -p "Enter the column name: " col
 	
 	if [ ! -z col ]
 	then
@@ -27,7 +29,7 @@ createColumn()
 			esac
 			done
 		fi
-		echo "Enter column data"
+		echo "Select the column data type: "
 		select choice in "Number" "String"
 		do
 			case $REPLY in
@@ -37,12 +39,12 @@ createColumn()
 				2) record="$record$col.text:"
 				   break
 				   	;;
-				*) echo "Enter a valid type"
+				*) echo -e "\t${RED}Enter a valid type${NOR}"
 					;;
 			esac
 		done
 	else
-		echo "Enter a valid column name!"
+		echo -e "\t${RED}Enter a valid column name!${NOR}"
 	fi
 	
 	let colNum=$colNum+1
@@ -54,35 +56,42 @@ read -p "Please enter table name : " tname
 if [ ! -z $tname ] && [ ! -f ./Databases/${1}/$tname ]
 then
 	touch ./Databases/${1}/$tname
-
+	echo -e "\t${CYAN}$tname ${GREEN}table has created successfully${NOR}"	
+	
+	echo ""
+	echo -e "${BLUE}*************   ${CYAN}Creating table   ${BLUE}************${NOR}"
 	select choice in "New column" "Finish table" "Unsave table"
 	do
 	case $REPLY in
 		1) 	createColumn
-			echo "ok"
+			echo -e "\t${GREEN}column created sucessfully.${NOR}"
 			;;
 		2) 
 			if [ "$pk_flag" != "0" ]
 			then
 				NL=$'\n'
-				echo -e "$primaryKey:$colNum\n$record " >> ./Databases/${1}/$tname
-				./DBoperations.sh ${1}
+				echo -e "$primaryKey:$colNum\n$record" >> ./Databases/${1}/$tname
+				echo -e "\t${CYAN}$tname ${GREEN}table has created sucessfully.${NOR}"
+				echo -e "${BLUE}***********************************************${NOR}"
+				source ./DBoperations.sh ${1}
 			else
-				echo "You must enter a Primary Key Column"
+				echo -e "\t${RED}You must enter a Primary Key Column${NOR}"
 			fi
 			;;
 		3) 	rm ./Databases/${1}/$tname
+			echo -e "\t${CYAN}$tname ${GREEN}table has unsaved.${NOR}"
+			echo -e "${BLUE}***********************************************${NOR}"
 			source ./DBoperations.sh
 			;;
-		*) echo $REPLY "is not one of the choices."
+		*) echo -e "\t${CYAN}$REPLY ${RED}is not one of the choices!${NOR}"
 			;;
 	esac
 	done
 else
-	echo "Invalid table name or already exists!!"
+	echo -e "\t${RED}Invalid table name or already exists!${NOR}"
+	echo ""
+	source ./DBoperations.sh
 fi
-
-
 
 
 
