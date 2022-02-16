@@ -2,7 +2,7 @@
 source ./colors.sh
 PS3="${1}>>"
 
-clear
+#clear
 echo ""
 echo -e "${BLUE}***********************************************${NOR}"
 echo -e "${BLUE}******************   ${CYAN}Tables   ${BLUE}*****************${NOR}"
@@ -35,7 +35,7 @@ case $REPLY in
 	4) 	echo -e "${BLUE}***********************************************${NOR}"
 		source ./DBoperations.sh
 		;;
-	*) echo $REPLY "is not one of the choices."
+	*) 	echo -e "\t${CYAN}$REPLY ${RED}is not one of the choices!${NOR}"
 		;;
 esac
 done

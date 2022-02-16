@@ -54,8 +54,6 @@ else
 			fi
 		done		
 
-
-
 		record="$record$input:"
 		#echo $input
 	done
@@ -66,3 +64,5 @@ fi
 
 echo ""
 echo -e "${BLUE}***********************************************${NOR}"
+echo "1) Insert into table  3) Select from table"
+echo "2) Drop from tables   4) Back"

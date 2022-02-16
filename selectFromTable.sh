@@ -2,7 +2,6 @@
 source ./colors.sh
 
 PS3="${1}>>"
-PK=`cut -d: -f2 ./Databases/${1}/$tname | head -n1`
 
 echo ""
 echo -e "${BLUE}**********   ${CYAN}Selecting from table   ${BLUE}***********${NOR}"
@@ -13,6 +12,7 @@ echo ""
 echo -e "${BLUE}**************   ${CYAN}Select column   ${BLUE}***************${NOR}"
 
 read -p "Enter table name: " tname
+PK=`cut -d: -f2 ./Databases/${1}/$tname | head -n1`
 if [ ! -z $tname ] && [ -f ./Databases/${1}/$tname ]
 then
 	read -p "Enter column name: " colname
@@ -41,6 +41,13 @@ then
 else
 	echo -e "\t${RED}Invalid table name!${NOR}"
 fi
+
+echo ""
+echo "1) Select table"
+echo "2) Select record"
+echo "3) Select column"
+echo "4) Back"
+
 }
 
 selectRecord () {
@@ -68,7 +75,7 @@ then
 			colnum=$((colnum+1))
 		done		
 
-		read -p "Enter $colname : " search
+		read -p "Enter the $colname in this record: " search
 
 		echo ""
 		echo -e "${BLUE}*******************${CYAN}   $tname   ${BLUE}********************${NOR}"
@@ -80,6 +87,12 @@ then
 else
 	echo -e "\t${RED}Invalid table name!${NOR}"
 fi
+
+echo ""
+echo "1) Select table"
+echo "2) Select record"
+echo "3) Select column"
+echo "4) Back"
 }
 
 selectTable () {
@@ -95,6 +108,12 @@ then
 	column -t -o"|" -s ":" ./Databases/${1}/$tname | awk '{if(NR>1) print "|" $0}'
 	echo -e "${BLUE}*************************************************${NOR}"
 fi
+
+echo ""
+echo "1) Select table"
+echo "2) Select record"
+echo "3) Select column"
+echo "4) Back"
 }
 
 

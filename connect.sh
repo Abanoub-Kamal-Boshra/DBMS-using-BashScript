@@ -21,7 +21,7 @@ case $REPLY in
 	1) read -p "Enter Database name: " dbname
 		if [ ! -z $dbname ] && [ -d ./Databases/$dbname ]
 		then
-			clear
+			#clear
 			echo -e "\t${CYAN}$dbname ${GREEN}connected succesfully${NOR}"
 			source ./DBoperations.sh $dbname
 			
@@ -29,7 +29,7 @@ case $REPLY in
 			echo -e "\t${RED}Please enter an exist database name!${NOR}"
 		fi
 		;;
-	2) echo -e "${BLUE}*******************************************************${NOR}"
+	2) echo -e "${BLUE}***********************************************${NOR}"
 	   source ./main.sh
 		;;
 	*) echo -e "\t${CYAN}$REPLY ${RED}is not one of the choices!${NOR}"

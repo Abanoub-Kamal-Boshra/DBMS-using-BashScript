@@ -21,14 +21,14 @@ do
     read -p "Enter database name : " dbName
         if [ -z $dbName ] || [[ $dbName != +([a-zA-Z0-9]) ]] || [[ $dbName =~ ^[0-9] ]]
         then
-            echo -e "\t${RED}Please enter a valid data!${NOR}"
+            echo -e "\t${RED}Please enter a valid name!${NOR}"
         
         elif [ -d ./Databases/$dbName ]
         then
             echo -e "\t${RED}Database already exist!${NOR}"
        else
             mkdir ./Databases/$dbName
-	    clear
+	    #clear
             echo ""
             echo  -e "\t${GREEN}Database ${CYAN}$dbName ${GREEN}succesfully created${NOR}"
 	    echo ""
@@ -37,8 +37,7 @@ do
 done
 
 
-echo " "
-echo -e "${BLUE}***** ${CYAN}Do You Need To Create More DataBases${BLUE} *****${NOR}"
+echo -e "${BLUE}***** ${CYAN}Do You Need To Create More DataBases${BLUE} ****${NOR}"
 
      select type in 'Yes' 'No'
      do 
@@ -47,7 +46,7 @@ echo -e "${BLUE}***** ${CYAN}Do You Need To Create More DataBases${BLUE} *****${
            1) createdb
             ;;   
             
-           2) echo -e "${BLUE}*******************************************************${NOR}"
+           2) echo -e "${BLUE}***********************************************${NOR}"
 	      source ./main.sh
             ;;
        
