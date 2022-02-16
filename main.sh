@@ -2,6 +2,7 @@
 source ./colors.sh
 
 PS3="Enter your choise number: "
+clear
 echo " "
 echo -e "${BLUE}\t***********************************************"
 echo -e "\t****************\t${RED}DBMS${BLUE}\t***************"

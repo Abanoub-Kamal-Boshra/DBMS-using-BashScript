@@ -21,6 +21,7 @@ case $REPLY in
 	1) read -p "Enter Database name: " dbname
 		if [ ! -z $dbname ] && [ -d ./Databases/$dbname ]
 		then
+			clear
 			echo -e "\t${CYAN}$dbname ${GREEN}connected succesfully${NOR}"
 			source ./DBoperations.sh $dbname
 			

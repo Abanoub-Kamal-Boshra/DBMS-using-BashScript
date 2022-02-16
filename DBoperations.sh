@@ -2,7 +2,6 @@
 source ./colors.sh
 PS3="${1}>>"
 
-
 echo ""
 echo -e "${BLUE}***********************************************"
 echo -e "**************   ${CYAN}DDL Operations   ${BLUE}*************"
@@ -21,7 +20,8 @@ case $REPLY in
 	4) 	echo -e "${BLUE}*******************************************************${NOR}"
 		source ./main.sh
 		;;
-	*) echo -e "${CYAN}$REPLY ${RED}is not one of the choices!${NOR}"
+	*) 	
+		echo -e "${CYAN}$REPLY ${RED}is not one of the choices!${NOR}"
 		;;
 esac
 done

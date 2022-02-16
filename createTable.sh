@@ -13,8 +13,8 @@ createColumn()
 	
 	read -p "Enter the column name: " col
 	
-	if [ ! -z col ]
-	then
+	if [ ! -z $col ] 
+        then
 		if [ "$pk_flag" = "0" ]
 		then
 			select choice in "Is Primary Key" "No"
@@ -26,6 +26,8 @@ createColumn()
 					;;
 				2) break
 				   	;;
+				*) echo -e "\t${RED}Enter a valid column name!${NOR}"
+					;;
 			esac
 			done
 		fi
@@ -43,6 +45,7 @@ createColumn()
 					;;
 			esac
 		done
+		echo -e "\t${GREEN}column created sucessfully.${NOR}"
 	else
 		echo -e "\t${RED}Enter a valid column name!${NOR}"
 	fi
@@ -52,8 +55,8 @@ createColumn()
 
 
 
-read -p "Please enter table name : " tname
-if [ ! -z $tname ] && [ ! -f ./Databases/${1}/$tname ]
+read -p "Please enter table name: " tname
+if [ ! -z $tname ] && [[ $tname =~ ^[0-9] ]]
 then
 	touch ./Databases/${1}/$tname
 	echo -e "\t${CYAN}$tname ${GREEN}table has created successfully${NOR}"	
@@ -64,12 +67,10 @@ then
 	do
 	case $REPLY in
 		1) 	createColumn
-			echo -e "\t${GREEN}column created sucessfully.${NOR}"
 			;;
 		2) 
 			if [ "$pk_flag" != "0" ]
 			then
-				NL=$'\n'
 				echo -e "$primaryKey:$colNum\n$record" >> ./Databases/${1}/$tname
 				echo -e "\t${CYAN}$tname ${GREEN}table has created sucessfully.${NOR}"
 				echo -e "${BLUE}***********************************************${NOR}"
@@ -83,23 +84,16 @@ then
 			echo -e "${BLUE}***********************************************${NOR}"
 			source ./DBoperations.sh
 			;;
-		*) echo -e "\t${CYAN}$REPLY ${RED}is not one of the choices!${NOR}"
+		*) 	echo -e "\t${CYAN}$REPLY ${RED}is not one of the choices!${NOR}"
 			;;
 	esac
 	done
 else
+	clear
 	echo -e "\t${RED}Invalid table name or already exists!${NOR}"
 	echo ""
 	source ./DBoperations.sh
 fi
-
-
-
-
-
-
-
-
 
 
 

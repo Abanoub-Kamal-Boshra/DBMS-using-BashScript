@@ -2,6 +2,7 @@
 source ./colors.sh
 PS3="${1}>>"
 
+clear
 echo ""
 echo -e "${BLUE}***********************************************${NOR}"
 echo -e "${BLUE}******************   ${CYAN}Tables   ${BLUE}*****************${NOR}"
