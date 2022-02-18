@@ -17,7 +17,7 @@ createColumn()
 
 	read -p "Enter the column name: " col
 	
-	if [ ! -z $col ] && [[ $col =~ ^[a-zA-Z] ]]
+	if [ ! -z $col ] && [[ $col =~ ^[a-zA-Z] ]] && [ -z `echo $record | grep "$col."` ]
         then
 		if [ "$pk_flag" = "0" ]
 		then
@@ -50,14 +50,15 @@ createColumn()
 			esac
 		done
 
-		let counter=$counter+1
-
 		let colNum=$colNum+1   #
 		echo -e "\t${GREEN}column created sucessfully.${NOR}"
+
 	else
-		echo -e "\t${RED}Invalid column name!${NOR}"
+
+		echo -e "\t${RED}Invalid column name or already exists!${NOR}"
 	fi
 	
+	#
 	echo ""
 	echo -e "${BLUE}***********************************************${NOR}"
 	echo "1) New column"
@@ -92,7 +93,7 @@ then
 			fi
 			;;
 		3) 	rm ./Databases/${1}/$tname
-			echo -e "\t${CYAN}$tname ${GREEN}table has unsaved.${NOR}"
+			echo -e "\t${CYAN}$tname ${GREEN}table is unsaved.${NOR}"
 			echo -e "${BLUE}***********************************************${NOR}"
 			source ./DBoperations.sh
 			;;
