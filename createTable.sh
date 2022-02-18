@@ -17,7 +17,7 @@ createColumn()
 	
 	read -p "Enter the column name: " col
 	
-	if [ ! -z $col ] && [[ $col =~ ^[a-zA-Z] ]]
+	if [ ! -z $col ] && [[ $col =~ ^[a-zA-Z] ]] && [ -z `echo $record | grep "$col."` ]
         then
 		if [ "$pk_flag" = "0" ]
 		then
@@ -58,7 +58,7 @@ createColumn()
 		echo "2) Finish table"
 		echo "3) Unsave table"
 	else
-		echo -e "\t${RED}Invalid column name!${NOR}"
+		echo -e "\t${RED}Invalid column name or already exists!${NOR}"
 	fi
 	
 	#
@@ -92,7 +92,7 @@ then
 			fi
 			;;
 		3) 	rm ./Databases/${1}/$tname
-			echo -e "\t${CYAN}$tname ${GREEN}table has unsaved.${NOR}"
+			echo -e "\t${CYAN}$tname ${GREEN}table is unsaved.${NOR}"
 			echo -e "${BLUE}***********************************************${NOR}"
 			source ./DBoperations.sh
 			;;
