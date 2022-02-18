@@ -1,9 +1,0 @@
-#!/bin/bash
-#PS3="${1}>>"
-typeset -i i=0
-for db in `ls $PWD/"Databases/${1}"`
-    do
-	i=$((i+1))
-    echo -e "**\t${i} - $db\t**"
-done
-
