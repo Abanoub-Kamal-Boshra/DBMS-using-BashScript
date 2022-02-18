@@ -2,7 +2,7 @@
 source ./colors.sh
 
 PS3="Enter your choise number: "
-clear
+#clear
 echo " "
 echo -e "${BLUE}\t***********************************************"
 echo -e "\t****************\t${RED}DBMS${BLUE}\t***************"
@@ -19,7 +19,10 @@ case $REPLY in
 		;;
 	4) source ./dropDatabase.sh
 		;;
-	5) exit
+	5) echo ""
+	   echo -e "${BLUE}*******************************************************${NOR}"
+	   echo ""
+	   exit
 		;;
 	*) echo $REPLY "is not one of the choices."
 		exit

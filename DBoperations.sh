@@ -17,11 +17,11 @@ case $REPLY in
 		;;
 	3)	source ./dropTable.sh ${1}
 		;;
-	4) 	echo -e "${BLUE}*******************************************************${NOR}"
+	4) 	echo -e "${BLUE}***********************************************${NOR}"
 		source ./main.sh
 		;;
 	*) 	
-		echo -e "${CYAN}$REPLY ${RED}is not one of the choices!${NOR}"
+		echo -e "\t${CYAN}$REPLY ${RED}is not one of the choices!${NOR}"
 		;;
 esac
 done

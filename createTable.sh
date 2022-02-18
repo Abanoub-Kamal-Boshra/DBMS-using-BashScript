@@ -2,6 +2,10 @@
 source ./colors.sh
 PS3="${1}>>"
 
+
+shopt -s extglob
+export LC_COLLATE=C
+
 pk_flag=0
 primaryKey=""
 colNum=1
@@ -10,10 +14,10 @@ record=""
 
 createColumn()
 {
-	
+
 	read -p "Enter the column name: " col
 	
-	if [ ! -z $col ] 
+	if [ ! -z $col ] && [[ $col =~ ^[a-zA-Z] ]]
         then
 		if [ "$pk_flag" = "0" ]
 		then
@@ -45,18 +49,26 @@ createColumn()
 					;;
 			esac
 		done
+
+		let counter=$counter+1
+
+		let colNum=$colNum+1   #
 		echo -e "\t${GREEN}column created sucessfully.${NOR}"
 	else
-		echo -e "\t${RED}Enter a valid column name!${NOR}"
+		echo -e "\t${RED}Invalid column name!${NOR}"
 	fi
 	
-	let colNum=$colNum+1
+	echo ""
+	echo -e "${BLUE}***********************************************${NOR}"
+	echo "1) New column"
+	echo "2) Finish table"
+	echo "3) Unsave table"
 }
 
 
-
 read -p "Please enter table name: " tname
-if [ ! -z $tname ] && [[ $tname =~ ^[0-9] ]]
+
+if [[ $tname =~ ^[a-zA-Z] ]] && [[ ! -f ./Databases/${1}/$tname ]]; 
 then
 	touch ./Databases/${1}/$tname
 	echo -e "\t${CYAN}$tname ${GREEN}table has created successfully${NOR}"	
@@ -66,7 +78,7 @@ then
 	select choice in "New column" "Finish table" "Unsave table"
 	do
 	case $REPLY in
-		1) 	createColumn
+		1) 	createColumn ${1} $tname
 			;;
 		2) 
 			if [ "$pk_flag" != "0" ]
@@ -89,7 +101,7 @@ then
 	esac
 	done
 else
-	clear
+	#clear
 	echo -e "\t${RED}Invalid table name or already exists!${NOR}"
 	echo ""
 	source ./DBoperations.sh
