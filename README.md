@@ -7,7 +7,7 @@
 
 
 ## OBJECTIVE
-This project aims to develop a Data Base Management System (DBMS) using Bash Script.
+This project aims to develope a Database Management System (DBMS) using Bash Script.
 
 
 ## DBMS
@@ -19,10 +19,12 @@ DBMS is a software used to facilitate and manage dealing with Databases in creat
 <p align="center">
   <img width="550" src="images/2.png">
 </p>
+
 ### Connect to a Database and show the available Data Definition Language (DDL)
 <p align="center">
   <img width="550" src="images/3.png">
 </p>
+
 ### List the existence tables in a Database and  show the available Data Manibulation Language (DML)
 <p align="center">
   <img width="550" src="images/4.png">
