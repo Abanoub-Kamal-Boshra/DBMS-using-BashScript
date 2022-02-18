@@ -17,7 +17,7 @@ createColumn()
 
 	read -p "Enter the column name: " col
 	
-	if [ ! -z $col ] && [[ $col =~ ^[a-zA-Z] ]] && [ -z `echo $record | grep "$col."` ]
+	if [ ! -z $col ] && [[ $col =~ ^[a-zA-Z] ]] && [ -z `echo $record | grep "$col."` ] && [ $col != $tname ] && [ $col != ${1} ]
         then
 		if [ "$pk_flag" = "0" ]
 		then
@@ -69,7 +69,7 @@ createColumn()
 
 read -p "Please enter table name: " tname
 
-if [[ $tname =~ ^[a-zA-Z] ]] && [[ ! -f ./Databases/${1}/$tname ]]; 
+if [[ $tname =~ ^[a-zA-Z] ]] && [[ ! -f ./Databases/${1}/$tname ]] && [ $tname != ${1} ] 
 then
 	touch ./Databases/${1}/$tname
 	echo -e "\t${CYAN}$tname ${GREEN}table has created successfully${NOR}"	
